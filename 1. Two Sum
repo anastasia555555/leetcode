@@ -1,0 +1,19 @@
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+        
+        int[] result = new int[2];
+        Dictionary<int, int> hashMap = new();
+        
+        for(int i = 0; i < nums.Length; i++){
+            if(hashMap.ContainsKey(target - nums[i])){
+                result[0] = hashMap[target - nums[i]];
+                result[1] = i;
+                return result;
+            }
+            
+            hashMap.TryAdd(nums[i], i);
+        }
+        
+        return result;
+    }
+}
