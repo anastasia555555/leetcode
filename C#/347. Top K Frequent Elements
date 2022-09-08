@@ -1,0 +1,24 @@
+public class Solution {
+    public int[] TopKFrequent(int[] nums, int k) {
+        Dictionary<int, int> hashmap = new();
+        int[] result = new int[k];
+        int _k = 0;
+        
+        for(int i = 0; i < nums.Length; i++){
+            if(!hashmap.ContainsKey(nums[i])){
+                hashmap.Add(nums[i], 0);
+            }
+            hashmap[nums[i]]++;
+        }
+        
+        IOrderedEnumerable<KeyValuePair<int, int>> ordered = hashmap.OrderByDescending(key => key.Value);
+        
+        foreach(var kvp in ordered){
+            if (_k == k) {
+                break;
+            }
+            result[_k++] = kvp.Key;
+        }
+        return result;
+    }
+}
