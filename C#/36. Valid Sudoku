@@ -1,0 +1,42 @@
+public class Solution {
+    public bool IsValidSudoku(char[][] board) {
+        Dictionary<int, List<char>> rows = new(); //key: row number; vlue: row numbers on board
+        Dictionary<int, List<char>> colomns = new();//key: colomn number; vlue: colomn numbers on board
+        Dictionary<(int, int), List<char>> squares = new();//key:(row /3, col /3); vlue: square numbers on board
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                rows.Add(i, new List<char>());
+                colomns.Add(j, new List<char>());
+                squares.Add((i / 3, j / 3), new List<char>());   
+            }
+        }
+        
+        //O(n^2) time
+        //O(n^2) space
+        
+        for(int r = 0; r < 9; r++){
+            for(int c = 0; c < 9; c++){
+                if(board[r][c] == '.')
+                    continue;
+                
+//                 if(!rows.ContainsKey(r))
+//                     rows.Add(r, new List<char>());
+//                 if(!colomns.ContainsKey(c))
+//                     colomns.Add(c, new List<char>());
+//                 if(!squares.ContainsKey((r / 3, c / 3)))
+//                     squares.Add((r / 3, c / 3), new List<char>());
+                
+                
+                if ((rows.ContainsKey(r) && rows[r].Contains(board[r][c])) ||
+                    colomns[c].Contains(board[r][c]) ||
+                    squares[(r / 3, c / 3)].Contains(board[r][c]))
+                    return false;
+                
+                rows[r].Add(board[r][c]);
+                colomns[c].Add(board[r][c]);
+                squares[(r/3, c/3)].Add(board[r][c]);
+            }
+        }
+    return true;
+    }
+}
