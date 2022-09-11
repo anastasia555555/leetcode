@@ -1,9 +1,7 @@
-// O(n*m) time (n - number of words; m - number of characters in words)
-// O(n*m) space complexity 
-
 public class Solution {
     public IList<IList<string>> GroupAnagrams(string[] strs) {
-        
+    // O(n*m) time (n - number of words; m - number of characters in words)
+    // O(n*m) space complexity         
         Dictionary<string, IList<string>> count = new(); // key: letter count; value: string;
         for(int i = 0; i < strs.Length; i++){
             char[] abc = new char[26];
