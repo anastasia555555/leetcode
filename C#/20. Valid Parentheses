@@ -1,0 +1,19 @@
+public class Solution {
+    public bool IsValid(string s) {
+        Dictionary<char, char> chars = new();
+        chars.Add(']', '[');
+        chars.Add(')', '(');
+        chars.Add('}', '{');
+
+        Stack<char> str = new();
+        for(int i = 0; i < s.Length; i++){
+            if(str.Count > 0 && chars.ContainsKey(s[i]) //O(1)
+              && str.Peek() == chars[s[i]]) //O(1)
+                str.Pop(); //O(1)
+            else
+                str.Push(s[i]); //O(1)
+        }
+        
+        return str.Count() == 0;
+    }
+}
