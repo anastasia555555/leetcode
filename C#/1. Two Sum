@@ -1,6 +1,6 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
-        
+        //O(n)
         int[] result = new int[2];
         Dictionary<int, int> hashMap = new();
         
