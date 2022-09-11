@@ -1,7 +1,6 @@
 public class Solution {
     //O(n^2) time
     //O(n) space
-    
     public int LongestConsecutive(int[] nums) {
         List<int> copy = nums.ToList();
         int longest = 0;
