@@ -1,0 +1,30 @@
+public class Solution {
+    //how does calling a method in a class works with global variables?
+    
+    public IList<string> GenerateParenthesis(int n) {
+        List<string> result = new List<string>();
+        StringBuilder tuple = new StringBuilder();
+        
+        void strs(int open, int closed){
+            if(open == closed && closed == n){
+                result.Add(tuple.ToString());
+                return;
+            }
+        
+            if(open < n){
+                tuple.Append("(");
+                strs(open + 1, closed);
+                tuple.Remove(tuple.Length - 1, 1);
+            }
+       
+            if(closed < open){
+                tuple.Append(")");
+                strs(open, closed + 1);
+                tuple.Remove(tuple.Length - 1, 1);
+            }
+        }
+        
+        strs(0, 0);
+        return result;
+    }
+}
