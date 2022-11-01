@@ -1,0 +1,18 @@
+public class Solution {
+    public int[] DailyTemperatures(int[] temperatures) {
+        int[] result = new int[temperatures.Length];
+        Stack<(int val, int ind)> stack = new();
+
+        for (int i = 0; i < temperatures.Length; i++)
+        {
+            while (stack.Count > 0 && temperatures[i] > stack.Peek().val)
+            {
+                (int val, int ind) temp = stack.Pop();
+                result[temp.ind] = i - temp.ind;
+            }
+        stack.Push((temperatures[i], i));
+        }
+
+        return result;
+    }
+}
